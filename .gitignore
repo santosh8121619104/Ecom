@@ -2,8 +2,13 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Ecom/.vs/Ecom
-/Ecom/Ecom.Server/obj
 /.vs
-/Ecom/Ecom.Server/bin
-/Ecom/ecom.client/obj/Debug
+/Ecom/Ecom.api/.vs/Ecom.api
+/Ecom/Ecom.api/Ecom.api/bin/Debug/net8.0
+/Ecom/Ecom.api/Ecom.api/obj
+/Ecom/Ecom.api/Ecom.BusinessLayer/bin/Debug/net8.0
+/Ecom/Ecom.api/Ecom.BusinessLayer/obj
+/Ecom/Ecom.api/Ecom.DataAccess/bin/Debug/net8.0
+/Ecom/Ecom.api/Ecom.DataAccess/obj
+/Ecom/Ecom.api/Ecom.SharedLibrary/bin/Debug/net8.0
+/Ecom/Ecom.api/Ecom.SharedLibrary/obj
