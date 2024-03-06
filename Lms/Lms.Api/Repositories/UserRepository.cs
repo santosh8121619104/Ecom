@@ -52,5 +52,15 @@ namespace Lms.Api.Repositories
             _context.Set<User>().Remove(user);
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<bool> LoginAsync(string email, string password)
+        {
+            User user = await _context.Users.FirstOrDefaultAsync(a => a.Email == email && a.Password == password);
+            if (user == null)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -29,6 +29,13 @@ namespace Lms.Api.GraphQLTypes.Mutations
             return updateUser;
         }
 
+        public async Task<bool> LoginUser(UserDTO input, [Service] IUserRepository userRepository)
+        {
+            if(string.IsNullOrEmpty(input.Email) || string.IsNullOrEmpty(input.Password))
+                return false;
+            return await userRepository.LoginAsync(input.Email, input.Password);
+        }
+
         public async Task<bool> DeleteUser(int id, [Service] IUserRepository userRepository) =>
             await userRepository.DeleteAsync(id);
     }
