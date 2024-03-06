@@ -14,9 +14,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<LmsContext>(options =>
 {
-    options.UseSqlServer("Server=LAPTOP-MIB0F8M3;Database=Lms;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True");
+    options.UseSqlServer(connectionString);
 });
 
 
@@ -40,8 +41,12 @@ builder.Services.AddScoped<IUserRepository,UserRepository>();
 
 var app = builder.Build();
 app.UseRouting();
-
-app.UseRouting();
+// Add redirection from root to /graphql
+app.MapGet("/", context =>
+{
+    context.Response.Redirect("/graphql");
+    return Task.CompletedTask;
+});
 
 app.UseEndpoints(endpoints =>
 {
