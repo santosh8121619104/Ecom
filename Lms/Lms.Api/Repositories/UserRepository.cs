@@ -21,6 +21,11 @@ namespace Lms.Api.Repositories
             return await _context.Users.FindAsync(id);
         }
 
+        public async Task<User> GetByEmaiAsync(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(a => a.Email == email);
+        }
+
         public async Task<IEnumerable<User>> GetAllAsync()
         {
             return await _context.Users.ToListAsync();

@@ -20,6 +20,17 @@ builder.Services.AddDbContext<LmsContext>(options =>
     options.UseSqlServer(connectionString);
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:8000")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 
 builder.Services.AddGraphQLServer()
       .AddQueryType<Query>()
@@ -41,6 +52,8 @@ builder.Services.AddScoped<IUserRepository,UserRepository>();
 
 var app = builder.Build();
 app.UseRouting();
+// Use CORS policy
+app.UseCors("AllowSpecificOrigin");
 // Add redirection from root to /graphql
 app.MapGet("/", context =>
 {

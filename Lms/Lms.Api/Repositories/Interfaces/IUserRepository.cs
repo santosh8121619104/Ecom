@@ -12,4 +12,5 @@ public interface IUserRepository
     Task UpdateAsync(User user);
     Task <bool> DeleteAsync(int id);
     Task<bool> LoginAsync(string email, string password);
+    Task<User> GetByEmaiAsync(string email);
 }
